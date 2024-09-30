@@ -101,7 +101,9 @@ void cache_insert(unsigned long long num, unsigned long long count)
     {
         return;
     }
+
     cache_node *current = cache_head;
+
     //If alread in cache, return
     while(current != NULL)
     {
@@ -120,6 +122,7 @@ void cache_insert(unsigned long long num, unsigned long long count)
         if(cache_method == 1)
         {
             cache_node *node_removed = cache_tail;
+
             if(node_removed != NULL)
             {
                 if(node_removed->prev != NULL)
@@ -133,6 +136,7 @@ void cache_insert(unsigned long long num, unsigned long long count)
                     cache_head = NULL;
                     cache_tail = NULL;
                 }
+
                 free(node_removed);
                 cache_size_current--;
             }
@@ -166,11 +170,13 @@ void cache_insert(unsigned long long num, unsigned long long count)
 
     //INSERT NEW NODE PROCESS
     cache_node *new_node = malloc(sizeof(cache_node));
+    
     if(new_node == NULL)
     {
-        printf("Error allocating memory for cache node\n"); //
+        printf("Error allocating memory for cache node\n");
         return;
     }
+
     new_node->key = num;
     new_node->value = count;
     new_node->frequency = 1;
@@ -187,12 +193,14 @@ void cache_insert(unsigned long long num, unsigned long long count)
 void cache_free()
 {
     cache_node *current = cache_head;
+
     while(current != NULL)
     {
         cache_node *next = current->next;
         free(current);
         current = next;
     }
+
     cache_head = NULL;
     cache_tail = NULL;
     cache_size_current = 0;

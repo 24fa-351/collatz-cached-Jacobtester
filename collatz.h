@@ -1,4 +1,4 @@
-//collatz.h
+// collatz.h
 #ifndef COLLATZ_H
 #define COLLATZ_H
 
